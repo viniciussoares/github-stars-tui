@@ -153,7 +153,8 @@ func (m Model) renderList(height, width int) string {
 
 		lines = append(lines, line1, line2)
 		if i < end-1 {
-			lines = append(lines, "")
+			divider := strings.Repeat("─", width)
+			lines = append(lines, m.styles.Divider.Render(divider))
 		}
 	}
 

@@ -21,6 +21,7 @@ type Styles struct {
 	Footer                   lipgloss.Style
 	FooterKey                lipgloss.Style
 	FooterError              lipgloss.Style
+	Divider                  lipgloss.Style
 }
 
 func DefaultStyles() Styles {
@@ -51,5 +52,6 @@ func DefaultStyles() Styles {
 		Footer:                   lipgloss.NewStyle().Foreground(muted),
 		FooterKey:                lipgloss.NewStyle().Foreground(accent).Bold(true),
 		FooterError:              lipgloss.NewStyle().Foreground(lipgloss.AdaptiveColor{Light: "#DC2626", Dark: "#FF5555"}),
+		Divider:                  lipgloss.NewStyle().Foreground(border),
 	}
 }
