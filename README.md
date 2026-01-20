@@ -1,19 +1,10 @@
-<br />
-<p align="center">
-  <h1 align="center">gh-stars</h1>
-</p>
+# gh-stars
 
-<p align="center">
-  A terminal UI to browse and search your GitHub stars.
-</p>
-
-<br />
+A terminal UI to browse and search your GitHub stars.
 
 <p align="center">
   <img src="./docs/gh-stars.jpg" alt="gh-stars screenshot" />
 </p>
-
-<br />
 
 ## Features
 
