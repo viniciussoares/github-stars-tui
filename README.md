@@ -9,6 +9,12 @@
 
 <br />
 
+<p align="center">
+  <img src="./docs/gh-stars.jpg" alt="gh-stars screenshot" />
+</p>
+
+<br />
+
 ## Features
 
 - Fast fuzzy search across names, descriptions, languages, and topics
