@@ -24,19 +24,20 @@ type Styles struct {
 }
 
 func DefaultStyles() Styles {
-	accent := lipgloss.Color("#BD93F9")
-	accentAlt := lipgloss.Color("#FF79C6")
-	muted := lipgloss.Color("#6272A4")
-	info := lipgloss.Color("#8BE9FD")
-	success := lipgloss.Color("#50FA7B")
-	border := lipgloss.AdaptiveColor{Light: "250", Dark: "238"}
+	accent := lipgloss.AdaptiveColor{Light: "#7C3AED", Dark: "#BD93F9"}    // purple
+	accentAlt := lipgloss.AdaptiveColor{Light: "#DB2777", Dark: "#FF79C6"} // pink
+	muted := lipgloss.AdaptiveColor{Light: "#6B7280", Dark: "#6272A4"}     // gray
+	info := lipgloss.AdaptiveColor{Light: "#0891B2", Dark: "#8BE9FD"}      // cyan
+	success := lipgloss.AdaptiveColor{Light: "#059669", Dark: "#50FA7B"}   // green
+	border := lipgloss.AdaptiveColor{Light: "#D1D5DB", Dark: "#44475A"}
+	text := lipgloss.AdaptiveColor{Light: "#1F2937", Dark: "#F8F8F2"}
 
 	return Styles{
 		HeaderBar:                lipgloss.NewStyle(),
 		HeaderTitle:              lipgloss.NewStyle().Bold(true).Foreground(accent),
 		HeaderMeta:               lipgloss.NewStyle().Foreground(muted),
 		SearchPrompt:             lipgloss.NewStyle().Foreground(muted),
-		SearchText:               lipgloss.NewStyle().Foreground(lipgloss.AdaptiveColor{Light: "0", Dark: "15"}),
+		SearchText:               lipgloss.NewStyle().Foreground(text),
 		SearchInactive:           lipgloss.NewStyle().Foreground(muted),
 		SearchBox:                lipgloss.NewStyle().Border(lipgloss.RoundedBorder()).BorderForeground(border).Padding(0, searchBoxPadding),
 		Panel:                    lipgloss.NewStyle().Border(lipgloss.RoundedBorder()).BorderForeground(border).Padding(panelPaddingY, panelPaddingX),
@@ -49,6 +50,6 @@ func DefaultStyles() Styles {
 		Muted:                    lipgloss.NewStyle().Foreground(muted),
 		Footer:                   lipgloss.NewStyle().Foreground(muted),
 		FooterKey:                lipgloss.NewStyle().Foreground(accent).Bold(true),
-		FooterError:              lipgloss.NewStyle().Foreground(lipgloss.AdaptiveColor{Light: "1", Dark: "9"}),
+		FooterError:              lipgloss.NewStyle().Foreground(lipgloss.AdaptiveColor{Light: "#DC2626", Dark: "#FF5555"}),
 	}
 }
