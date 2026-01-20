@@ -18,6 +18,7 @@ type Repo struct {
 	Stars           int
 	PrimaryLanguage string
 	UpdatedAt       time.Time
+	StarredAt       time.Time
 	IsFork          bool
 	Topics          []string
 }
@@ -49,20 +50,23 @@ func FetchStarsPage(ctx context.Context, client *gh.GraphQLClient, pageSize int,
 	var query struct {
 		Viewer struct {
 			StarredRepositories struct {
-				Nodes []struct {
-					Name            string
-					NameWithOwner   string `graphql:"nameWithOwner"`
-					Description     string
-					URL             string
-					Stars           int `graphql:"stargazerCount"`
-					UpdatedAt       time.Time
-					IsFork          bool `graphql:"isFork"`
-					PrimaryLanguage *struct {
-						Name string
+				Edges []struct {
+					StarredAt time.Time `graphql:"starredAt"`
+					Node      struct {
+						Name            string
+						NameWithOwner   string `graphql:"nameWithOwner"`
+						Description     string
+						URL             string
+						Stars           int `graphql:"stargazerCount"`
+						UpdatedAt       time.Time
+						IsFork          bool `graphql:"isFork"`
+						PrimaryLanguage *struct {
+							Name string
+						}
+						RepositoryTopics struct {
+							Nodes []topicNode
+						} `graphql:"repositoryTopics(first: 5)"`
 					}
-					RepositoryTopics struct {
-						Nodes []topicNode
-					} `graphql:"repositoryTopics(first: 5)"`
 				}
 				TotalCount int
 				PageInfo   struct {
@@ -88,8 +92,9 @@ func FetchStarsPage(ctx context.Context, client *gh.GraphQLClient, pageSize int,
 		return StarsPage{}, err
 	}
 
-	repos := make([]Repo, 0, len(query.Viewer.StarredRepositories.Nodes))
-	for _, node := range query.Viewer.StarredRepositories.Nodes {
+	repos := make([]Repo, 0, len(query.Viewer.StarredRepositories.Edges))
+	for _, edge := range query.Viewer.StarredRepositories.Edges {
+		node := edge.Node
 		primaryLanguage := ""
 		if node.PrimaryLanguage != nil {
 			primaryLanguage = node.PrimaryLanguage.Name
@@ -112,6 +117,7 @@ func FetchStarsPage(ctx context.Context, client *gh.GraphQLClient, pageSize int,
 			Stars:           node.Stars,
 			PrimaryLanguage: primaryLanguage,
 			UpdatedAt:       node.UpdatedAt,
+			StarredAt:       edge.StarredAt,
 			IsFork:          node.IsFork,
 			Topics:          topics,
 		})

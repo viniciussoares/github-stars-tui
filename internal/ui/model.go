@@ -398,7 +398,7 @@ func (m *Model) cycleSortMode() {
 }
 
 func (m *Model) sortFiltered() {
-	if m.sortMode == "default" || len(m.filtered) == 0 {
+	if len(m.filtered) == 0 {
 		return
 	}
 
@@ -406,6 +406,8 @@ func (m *Model) sortFiltered() {
 		a := m.repos[m.filtered[i]]
 		b := m.repos[m.filtered[j]]
 		switch m.sortMode {
+		case "default":
+			return a.StarredAt.After(b.StarredAt)
 		case "stars":
 			return a.Stars > b.Stars
 		case "name":
