@@ -10,8 +10,8 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 	gh "github.com/cli/go-gh/v2/pkg/api"
 
-	"github.com/vini/gh-stars/internal/data"
-	"github.com/vini/gh-stars/internal/ui"
+	"github.com/viniciussoares/github-stars-tui/internal/data"
+	"github.com/viniciussoares/github-stars-tui/internal/ui"
 )
 
 func main() {

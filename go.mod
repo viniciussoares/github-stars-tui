@@ -1,4 +1,4 @@
-module github.com/vini/gh-stars
+module github.com/viniciussoares/github-stars-tui
 
 go 1.23.0
 

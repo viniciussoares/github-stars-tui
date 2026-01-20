@@ -16,7 +16,7 @@ import (
 	gh "github.com/cli/go-gh/v2/pkg/api"
 	"github.com/cli/go-gh/v2/pkg/browser"
 
-	"github.com/vini/gh-stars/internal/data"
+	"github.com/viniciussoares/github-stars-tui/internal/data"
 )
 
 type Model struct {

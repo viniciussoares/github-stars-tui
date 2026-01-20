@@ -1,32 +1,69 @@
-# gh-stars
+<br />
+<p align="center">
+  <h1 align="center">gh-stars</h1>
+</p>
 
-A terminal UI to browse and search your GitHub stars, inspired by gh-dash.
+<p align="center">
+  A terminal UI to browse and search your GitHub stars.
+</p>
+
+<br />
+
+## Features
+
+- Fast fuzzy search across names, descriptions, languages, and topics
+- Preview panel with repo details (README coming soon)
+- Smart caching with background sync
+- Vim-style keyboard navigation
+- Sort by stars, name, or recently updated
 
 ## Requirements
+
 - GitHub CLI (`gh`) authenticated via `gh auth login`
 - Go 1.22+
 
-## Run
-```
-go run ./cmd/gh-stars
+## Installation
+
+```bash
+go install github.com/viniciussoares/github-stars-tui/cmd/gh-stars@latest
 ```
 
-## Build
-```
+Or build from source:
+
+```bash
 go build -o gh-stars ./cmd/gh-stars
 ./gh-stars
 ```
 
-## Keys
-- `j`/`k` or arrows: move
-- `/`: focus search
-- `esc`: exit search
-- `enter`: open selected repo in browser
-- `y`: copy selected repo URL
-- `q`: quit
+## Keybindings
+
+| Key | Action |
+|-----|--------|
+| `j` / `k` / `↑` / `↓` | Navigate |
+| `g` / `G` | Jump to top / bottom |
+| `pgup` / `pgdown` | Page up / down |
+| `/` | Focus search |
+| `esc` / `enter` | Exit search |
+| `s` | Cycle sort mode |
+| `enter` | Open repo in browser |
+| `y` | Copy repo URL |
+| `r` | Force refresh |
+| `q` | Quit |
 
 ## Cache
-By default, stars are cached to `~/.config/gh-stars/cache.json` and refreshed in the background every 48h.
-Use `-refresh` to force a foreground refresh on startup.
-Use `-sync-interval` to change the background refresh cadence or `-sync-interval=0` to disable it.
-Use `-cache ''` to disable caching.
+
+Stars are cached to `~/.config/gh-stars/cache.json` and refreshed in the background every 48h.
+
+| Flag | Description |
+|------|-------------|
+| `-refresh` | Force refresh on startup |
+| `-sync-interval` | Background refresh interval (default: 48h, 0 to disable) |
+| `-cache ''` | Disable caching |
+
+## Under the hood
+
+gh-stars uses:
+
+- [bubbletea](https://github.com/charmbracelet/bubbletea) for the TUI
+- [lipgloss](https://github.com/charmbracelet/lipgloss) for styling
+- [gh](https://github.com/cli/cli) for GitHub API access
